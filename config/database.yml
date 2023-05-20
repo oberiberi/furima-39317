@@ -1,3 +1,7 @@
+#このデータベースの設定は元々設定されていたもので、カリキュラムからはコピペしていません。
+# エラーが出るようなら、発展のlesson5 デプロイ〜ajaxappを公開しよう〜からコピペすること。
+
+
 # MySQL. Versions 5.5.8 and up are supported.
 #
 # Install the MySQL driver
