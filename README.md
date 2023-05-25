@@ -28,8 +28,8 @@
 | category_id               | integer    | null: false                    |
 | item_condition_id         | integer    | null: false                    |
 | delivery_price_id         | integer    | null: false                    |
-| sender_area_id            | integer    | null: false,                   |
-| standard_send_date_id     | integer    | null: false,                   |
+| sender_area_id            | integer    | null: false                    |
+| standard_send_date_id     | integer    | null: false                    |
 | item_content              | string     | null: false                    |
 
 
