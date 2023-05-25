@@ -5,7 +5,7 @@
 | Column                   | Type       | Options                   |
 | ------------------------ | ---------- | ------------------------  |
 | nickname                 | string     | null: false               |
-| email                    | string     | null: false               |
+| email                    | string     | null: false, unique: true |
 | encrypted_password       | string     | null: false               |
 | last_name                | string     | null: false               |
 | first_name               | string     | null: false               |
@@ -30,10 +30,12 @@
 | delivery_price_id         | integer    | null: false                    |
 | sender_area_id            | integer    | null: false,                   |
 | standard_send_date_id     | integer    | null: false,                   |
+| item_content              | string     | null: false                    |
+
 
 ### Association
 
-- has_one_attached :buy
+- has_one :buy
 - belongs_to :user
 - belongs_to_active_hash :category
 - belongs_to_active_hash :item_condition
@@ -48,14 +50,12 @@
 | ------------------------ | ---------- | ------------------------------- |
 | user                     | references | null: false, foreign_key: true  |
 | item                     | references | null: false, foreign_key: true  |
-| item_content             | string     | null: false                     |
-
  
 ### Association
 
 - belongs_to :user
 - belongs_to :item
-- has_one_attached :send
+- has_one :send
 
 
 ## sends テーブル
