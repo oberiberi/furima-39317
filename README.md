@@ -5,13 +5,13 @@
 | Column                   | Type       | Options                   |
 | ------------------------ | ---------- | ------------------------  |
 | nickname                 | string     | null: false               |
-| email                    | string     | null: false, unique: true |
+| email                    | string     | null: false               |
 | encrypted_password       | string     | null: false               |
 | last_name                | string     | null: false               |
 | first_name               | string     | null: false               |
 | last_name_kana           | string     | null: false               |
 | first_name_kana          | string     | null: false               |
-| birthday                 | date       | null: false               |
+| birth_date               | date       | null: false               |
 
 ### Association
 
@@ -25,16 +25,21 @@
 | user                      | references | null: false, foreign_key: true |
 | item_name                 | string     | null: false                    |
 | price                     | integer    | null: false                    |
-| category                  | string     | null: false                    |
-| commodity condition       | string     | null: false                    |
-| shipping charges          | string     | null: false                    |
-| shipping area             | string     | null: false,                   |
-| estimated shipping date   | string     | null: false,                   |
+| category_id               | integer    | null: false                    |
+| item_condition_id         | integer    | null: false                    |
+| delivery_price_id         | integer    | null: false                    |
+| sender_area_id            | integer    | null: false,                   |
+| standard_send_date_id     | integer    | null: false,                   |
 
 ### Association
 
-- belongs_to :buy
+- has_one_attached :buy
 - belongs_to :user
+- belongs_to_active_hash :category
+- belongs_to_active_hash :item_condition
+- belongs_to_active_hash :delivery_price
+- belongs_to_active_hash :sender_area
+- belongs_to_active_hash :standard_send_date
 
 
 ## buys テーブル
@@ -43,28 +48,30 @@
 | ------------------------ | ---------- | ------------------------------- |
 | user                     | references | null: false, foreign_key: true  |
 | item                     | references | null: false, foreign_key: true  |
+| item_content             | string     | null: false                     |
 
  
 ### Association
 
-- belongs_to :shipping
 - belongs_to :user
-- has_many :items
+- belongs_to :item
+- has_one_attached :send
 
 
-## shippings テーブル
+## sends テーブル
 
 | Column                   | Type       | Options                         |
 | ------------------------ | ---------- | ------------------------------- |
-| post code                | integer    | null: false                     |
-| prefectures              | string     | null: false                     |
+| post_code                | string     | null: false                     |
+| prefectures_id           | integer    | null: false                     |
 | municipality             | string     | null: false                     |
 | address                  | string     | null: false                     |
-| building name            | string     |                                 |
-| telephon number          | string     | null: false                     |
-| buying_history           | references | null: false, foreign_key: true  |
+| building_name            | string     |                                 |
+| telephon_number          | string     | null: false                     |
+| buy                      | references | null: false, foreign_key: true  |
  
 ### Association
 
-- has_many :buys
+- belongs_to :buy
+- has_one_active_hash :prefectures
 
