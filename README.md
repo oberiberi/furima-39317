@@ -28,9 +28,9 @@
 | category_id               | integer    | null: false                    |
 | item_condition_id         | integer    | null: false                    |
 | delivery_price_id         | integer    | null: false                    |
-| sender_area_id            | integer    | null: false                    |
-| standard_send_date_id     | integer    | null: false                    |
-| item_content              | string     | null: false                    |
+| prefecture_id             | integer    | null: false                    |
+| standard_shipping_date_id | integer    | null: false                    |
+| item_content              | text       | null: false                    |
 
 
 ### Association
@@ -40,7 +40,7 @@
 - belongs_to_active_hash :category
 - belongs_to_active_hash :item_condition
 - belongs_to_active_hash :delivery_price
-- belongs_to_active_hash :sender_area
+- belongs_to_active_hash :prefecture_id 
 - belongs_to_active_hash :standard_send_date
 
 
@@ -55,15 +55,15 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one :send
+- has_one :shipping_address
 
 
-## sends テーブル
+## shipping_address テーブル
 
 | Column                   | Type       | Options                         |
 | ------------------------ | ---------- | ------------------------------- |
 | post_code                | string     | null: false                     |
-| prefectures_id           | integer    | null: false                     |
+| prefecture_id            | integer    | null: false                     |
 | municipality             | string     | null: false                     |
 | address                  | string     | null: false                     |
 | building_name            | string     |                                 |
@@ -73,5 +73,5 @@
 ### Association
 
 - belongs_to :buy
-- has_one_active_hash :prefectures
+- has_one_active_hash :prefecture_id        
 
