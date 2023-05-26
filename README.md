@@ -55,10 +55,10 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one :shipping_address
+- has_one :shipping_addresses
 
 
-## shipping_address テーブル
+## shipping_addresses テーブル
 
 | Column                   | Type       | Options                         |
 | ------------------------ | ---------- | ------------------------------- |
