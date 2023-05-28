@@ -65,3 +65,5 @@ end
 gem 'active_hash'
 
 gem 'devise'
+
+gem 'mail', '2.7.1'
