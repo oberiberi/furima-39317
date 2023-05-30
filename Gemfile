@@ -67,5 +67,5 @@ gem 'active_hash'
  gem 'rspec-rails'
  gem 'factory_bot_rails'
  gem 'faker'
-
- end
+end
+ gem 'devise'
