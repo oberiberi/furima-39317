@@ -60,6 +60,7 @@ end
 
 group :production do
   gem 'pg'
+end
 
 
 gem 'active_hash'
@@ -67,5 +68,4 @@ gem 'active_hash'
  gem 'rspec-rails'
  gem 'factory_bot_rails'
  gem 'faker'
-end
  gem 'devise'

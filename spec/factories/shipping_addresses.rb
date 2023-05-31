@@ -1,8 +1,6 @@
 FactoryBot.define do
-  factory :buy do
+  factory :message do
     content {Faker::Lorem.sentence}
-    association :user
     association :buy
-    association :shipping_address
   end
 end
