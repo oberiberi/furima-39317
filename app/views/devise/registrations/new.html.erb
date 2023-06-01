@@ -7,9 +7,8 @@
       会員情報入力
     </h1>
   </div>
-  <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
-  <%= render 'shared/error_messages', model: f.object %>
- <div class='register-flash-message'>
+  <%= render 'shared/error_messages', model: f.object %>  <%# 学習メモ：エラー発生時にメッセージが表示される %>
+  <div class='register-flash-message'>
     <%= flash[:notice] %>
     <%= flash[:alert] %>
   </div>

@@ -23,7 +23,6 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Email can't be blank")
       end
       it 'メールアドレスが一意性であること' do
-        # テスト用の他のユーザーを作成しておく場合など、適宜追加のコードが必要です
         @user.save
         another_user = FactoryBot.build(:user, email: @user.email)
         another_user.valid?
@@ -45,8 +44,21 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
       end
-      it 'パスワードは、半角英数字混合での入力が必須であること' do
-        @user.password = 'password' # 半角英数字混合のパスワード
+
+
+
+      it 'パスワードは、英字のみでは登録できない' do
+        @user.password = 'password'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      end
+      it 'パスワードは、数字のみでは登録できない' do
+        @user.password = '123456'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      end
+      it 'パスワードは、全角文字を含んでいるものは登録できない' do
+        @user.password = 'ABCDEF' 
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
@@ -56,11 +68,14 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
-      it 'お名前(全角)は、名字と名前がそれぞれ必須であること' do
+      it 'お名前（姓）(全角)は、名字と名前がそれぞれ必須であること' do
         @user.first_name = nil
-        @user.last_name = nil
         @user.valid?
         expect(@user.errors.full_messages).to include("First name can't be blank")
+      end
+      it 'お名前（名）(全角)は、名字と名前がそれぞれ必須であること' do
+        @user.last_name = nil
+        @user.valid?
         expect(@user.errors.full_messages).to include("Last name can't be blank")
       end
       it 'お名前（姓）(全角)は、全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
@@ -73,11 +88,14 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include('Last name is invalid')
       end
-      it 'お名前カナ(全角)は、名字と名前がそれぞれ必須であること' do
+      it 'お名前カナ（姓）(全角)は、名字と名前がそれぞれ必須であること' do
         @user.first_name_kana = nil
-        @user.last_name_kana = nil
         @user.valid?
         expect(@user.errors.full_messages).to include("First name kana can't be blank")
+      end
+      it 'お名前カナ（名）(全角)は、名字と名前がそれぞれ必須であること' do
+        @user.last_name_kana = nil
+        @user.valid?
         expect(@user.errors.full_messages).to include("Last name kana can't be blank")
       end
       it 'お名前（姓）カナ(全角)は、全角（カタカナ）での入力が必須であること' do
