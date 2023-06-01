@@ -69,3 +69,7 @@ gem 'active_hash'
  gem 'factory_bot_rails'
  gem 'faker'
  gem 'devise'
+
+ group :development do
+  gem 'rubocop', require: false
+end
