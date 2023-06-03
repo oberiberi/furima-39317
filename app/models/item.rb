@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :delivery_price
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :standard_send_date
+  has_one_attached :image
 
   validates :text, presence: true
   validates :genre_id, numericality: { other_than: 1, message: "can't be blank" } 
