@@ -73,3 +73,6 @@ gem 'active_hash'
  group :development do
   gem 'rubocop', require: false
 end
+
+gem 'mini_magick'
+gem 'image_processing', '~> 1.2'

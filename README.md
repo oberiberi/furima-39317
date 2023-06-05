@@ -26,11 +26,11 @@
 | item_name                 | string     | null: false                    |
 | price                     | integer    | null: false                    |
 | category_id               | integer    | null: false                    |
-| item_condition_id         | integer    | null: false                    |
+| condition_id              | integer    | null: false                    |
 | delivery_price_id         | integer    | null: false                    |
 | prefecture_id             | integer    | null: false                    |
-| standard_shipping_date_id | integer    | null: false                    |
-| item_content              | text       | null: false                    |
+| standard_send_date_id     | integer    | null: false                    |
+| content                   | text       | null: false                    |
 
 
 ### Association
@@ -38,9 +38,9 @@
 - has_one :buy
 - belongs_to :user
 - belongs_to_active_hash :category
-- belongs_to_active_hash :item_condition
+- belongs_to_active_hash :condition
 - belongs_to_active_hash :delivery_price
-- belongs_to_active_hash :prefecture_id 
+- belongs_to_active_hash :prefecture
 - belongs_to_active_hash :standard_send_date
 
 
@@ -55,10 +55,10 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one :shipping_address
+- has_one :send_address
 
 
-## shipping_addresses テーブル
+## send_addresses テーブル
 
 | Column                   | Type       | Options                         |
 | ------------------------ | ---------- | ------------------------------- |
