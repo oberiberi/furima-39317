@@ -13,10 +13,10 @@ class Item < ApplicationRecord
   
   validates :category_id, numericality: { other_than: 1, message: "can't be blank" } 
   validates :condition_id, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :delivery_price_id, numericality: { other_than: 1, message: "Delivery price can't be blank" } 
+  validates :delivery_price_id, numericality: { other_than: 1, message: "can't be blank" } 
   validates :prefecture_id, numericality: { other_than: 1 , message: "can't be blank"}
   validates :standard_send_date_id, numericality: { other_than: 1 , message: "can't be blank"}
 
-  validates :price, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_998}
+  validates :price, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999}
 
 end

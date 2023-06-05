@@ -10,7 +10,6 @@ FactoryBot.define do
     price                 { 500 }
   
     association :user
-    # association :buys
 
     after(:build) do |item|
       item.image.attach(io: File.open('public/images/test_image.png'), filename: 'test_image.png')

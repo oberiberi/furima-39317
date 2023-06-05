@@ -28,27 +28,28 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Content can't be blank")
       end
       it 'カテゴリーが必須であること' do
-        @item.category = nil
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
       it '商品の状態が必須であること' do
-        @item.condition = nil
+        @item.condition_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Condition can't be blank")
       end
       it '配送料の負担が必須であること' do
-        @item.delivery_price = nil
+        @item.delivery_price_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery price can't be blank")
       end
       it '発送元の地域が必須であること' do
-        @item.prefecture = nil
+        @item.prefecture_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
       it '発送までの日数が必須であること' do
-        @item.standard_send_date = nil
+        standard_send_date = StandardSendDate.find_by(id: 1)
+        @item.standard_send_date = standard_send_date
         @item.valid?
         expect(@item.errors.full_messages).to include("Standard send date can't be blank")
       end
@@ -68,10 +69,15 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
       end
       it '販売価格が9999999円以上では登録できない' do
-        @item.price = 9999999
+        @item.price = 10000000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999998")
+        expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
       end
+      it 'userが紐づいていない場合登録できない' do
+          item = Item.new
+          expect(item).not_to be_valid
+          expect(item.errors[:user]).to include("must exist")
+        end 
     end
   end
 end
