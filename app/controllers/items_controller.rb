@@ -1,12 +1,14 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!,only: [:new, :create]
 
-  def edit
-    @item = Item.find(params[:id])
-    unless user_signed_in? && current_user.id == @item.user_id
-      redirect_to action: :index
-    end
-  end
+  # <※ 残す　編集機能で使用>
+  # def edit
+  #   @item = Item.find(params[:id])
+    # unless user_signed_in? && current_user.id == @item.user_id
+    #   redirect_to action: :index
+  #   end
+  # end
+  # <※ 残す　編集機能で使用>
 
   def show
     @item = Item.find(params[:id])
