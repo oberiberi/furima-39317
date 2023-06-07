@@ -3,9 +3,13 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   def destroy
-    return unless @item.destroy
-
-    redirect_to root_path
+   if current_user.id = @item.user_id
+    if @item.destroy
+     redirect_to root_path
+    else
+     render :new
+    end
+   end
   end
 
   def update
