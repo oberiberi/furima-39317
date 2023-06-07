@@ -1,6 +1,29 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
+  def update
+    @item = Item.find(params[:id])
+    @item.update(item_params)
+    if @item.save
+      redirect_to item_path
+    else
+      render :new
+    end 
+  end
+
+  def edit
+    @item = Item.find(params[:id])
+   if user_signed_in?
+    if current_user.id == @item.user_id
+      redirect_to edit_item_path(@item.id)
+   else
+     redirect_to new_user_session_path
+    end
+   end
+  end
+
+
+
   # <※ 残す　編集機能で使用>
   # def edit
   #   @item = Item.find(params[:id])
