@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit]
 
   def update
     @item = Item.find(params[:id])
@@ -8,30 +8,15 @@ class ItemsController < ApplicationController
       redirect_to item_path
     else
       render :new
-    end 
+    end
   end
 
   def edit
     @item = Item.find(params[:id])
-   if user_signed_in?
-    if current_user.id == @item.user_id
-      redirect_to edit_item_path(@item.id)
-   else
-     redirect_to new_user_session_path
-    end
-   end
+    return unless current_user.id != @item.user_id
+
+    redirect_to root_path
   end
-
-
-
-  # <※ 残す　編集機能で使用>
-  # def edit
-  #   @item = Item.find(params[:id])
-  # unless user_signed_in? && current_user.id == @item.user_id
-  #   redirect_to action: :index
-  #   end
-  # end
-  # <※ 残す　編集機能で使用>
 
   def show
     @item = Item.find(params[:id])
