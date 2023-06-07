@@ -54,29 +54,29 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Standard send date can't be blank")
       end
       it '販売価格が必須であること' do
-        @item.price= nil
+        @item.price = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
       it '販売価格は、半角数値以外を含んでいるものは登録できない' do
-        @item.price = 'AaあBbかｶ' 
+        @item.price = 'AaあBbかｶ'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
       it '販売価格が299円以下では登録できない' do
-        @item.price= 299
+        @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
+        expect(@item.errors.full_messages).to include('Price must be greater than or equal to 300')
       end
       it '販売価格が9999999円以上では登録できない' do
-        @item.price = 10000000
+        @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+        expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
       end
       it 'userが紐づいていない場合登録できない' do
         @item.user = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("User must exist")
+        expect(@item.errors.full_messages).to include('User must exist')
       end
     end
   end

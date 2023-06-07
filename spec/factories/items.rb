@@ -1,6 +1,6 @@
 FactoryBot.define do
-  factory :item do                 
-    item_name             { Faker::Lorem.words(number: 2). join(' ') } 
+  factory :item do
+    item_name             { Faker::Lorem.words(number: 2).join(' ') }
     content               { Faker::Lorem.paragraph }
     category_id           { 2 }
     condition_id          { 2 }
@@ -8,7 +8,7 @@ FactoryBot.define do
     prefecture_id         { 2 }
     standard_send_date_id { 2 }
     price                 { 500 }
-  
+
     association :user
 
     after(:build) do |item|
