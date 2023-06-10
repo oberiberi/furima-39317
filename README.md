@@ -16,7 +16,7 @@
 ### Association
 
 - has_many :items
-- has_many :buys
+- has_many :orders
 
 ## items テーブル
 
@@ -35,7 +35,7 @@
 
 ### Association
 
-- has_one :buy
+- has_one :order
 - belongs_to :user
 - belongs_to_active_hash :category
 - belongs_to_active_hash :condition
@@ -72,6 +72,6 @@
  
 ### Association
 
-- belongs_to :buy
+- belongs_to :order
 - has_one_active_hash :prefecture_id      
 
