@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  has_one :order
+  has_one :buy
   belongs_to :user
   belongs_to_active_hash :category
   belongs_to_active_hash :condition

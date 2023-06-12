@@ -1,12 +1,11 @@
 class Order
   include ActiveModel::Model
-  attr_accessor :post_code, :prefecture_id, :municipality, :address, :building_name, :telephon_number, :user_id, :item_id
-  #  ※attr_accessorのところに、後でtokenを入力 
-
+  attr_accessor :token, :post_code, :prefecture_id, :municipality, :address, :building_name, :telephon_number, :user_id, :item_id
+ 
 with_options presence: true do
   validates :municipality, :address
   validates :user_id, :item_id
-  # validates :token, presence: true
+  validates :token
   validates :post_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Enter it as follows (e.g. 123-4567)"}
   validates :telephon_number, format: {with: /\A0\d{9,10}\z/, multiline: true }
 end

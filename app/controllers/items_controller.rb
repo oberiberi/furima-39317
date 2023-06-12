@@ -18,6 +18,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
+     if @item.buy.present?|| current_user.id == @item.user_id 
+      return redirect_to root_path
+     end
   end
 
   def show
