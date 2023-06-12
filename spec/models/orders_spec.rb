@@ -18,11 +18,11 @@ RSpec.describe Order, type: :model do
       end
     end
     context 'クレジットカード情報と発送先の情報の入力ができない場合' do
-      it "tokenが空では登録できないこと" do
-         @order.token = nil
-         @order.valid?
-         expect(@order.errors.full_messages).to include("Token can't be blank")
-       end
+      it 'tokenが空では登録できないこと' do
+        @order.token = nil
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Token can't be blank")
+      end
       it '郵便番号が必須であること' do
         @order.post_code = nil
         @order.valid?
@@ -56,7 +56,7 @@ RSpec.describe Order, type: :model do
       it '電話番号は、半角数値以外を含んでいるものは登録できない' do
         @order.telephon_number = 'asTTTSSS123'
         @order.valid?
-        expect(@order.errors.full_messages).to include("Telephon number is invalid")
+        expect(@order.errors.full_messages).to include('Telephon number is invalid')
       end
       it '電話番号は、9桁以下では登録できない' do
         @order.telephon_number = '123456789'
