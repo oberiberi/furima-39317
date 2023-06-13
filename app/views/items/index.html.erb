@@ -142,8 +142,6 @@
             </div>
           <% end %>
             </div>
-          <%# ※上記コメントアウトは商品購入実装まで残しておく → 商品購入機能実装後に実装する必要があるため %>
-          
            <div class='item-info'>
             <h3 class='item-name'>
               <%= item.item_name %>
@@ -162,9 +160,6 @@
         </li>
       <% end %>  
       <% end %>
-
-      <%# 残す ※商品入機能作成後に削除 ↓ %>
-        <%# ここに「sold out」と表示する記述をする %>
      <% unless @items.present? %>
       <li class='list'>
         <%= link_to '#' do %>       
