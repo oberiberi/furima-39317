@@ -4,14 +4,12 @@ class ItemsController < ApplicationController
   before_action :set_action, only: [:edit, :destroy]
 
   def destroy
-      @item.destroy
-      redirect_to root_path
+    @item.destroy
+    redirect_to root_path
   end
-  
 
   def update
-    @item.update(item_params)
-    if @item.save
+    if @item.update(item_params)
       redirect_to item_path
     else
       render :edit
@@ -19,9 +17,15 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    return unless @item.buy.present? || current_user.id == @item.user_id
+
+    redirect_to root_path
   end
 
   def show
+    if  @item.buy.present?
+      render :show
+    end
   end
 
   def index

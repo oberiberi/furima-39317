@@ -72,6 +72,6 @@
  
 ### Association
 
-- belongs_to :buy
+- belongs_to :order
 - has_one_active_hash :prefecture_id      
 
