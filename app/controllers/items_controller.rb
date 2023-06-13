@@ -23,6 +23,9 @@ class ItemsController < ApplicationController
   end
 
   def show
+    if  @item.buy.present?
+      render :show
+    end
   end
 
   def index
